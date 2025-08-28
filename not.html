@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dli & Dina - Harga Jasa</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 90%;
+      width: 400px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .service {
+      margin: 15px 0;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .service p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .price {
+      color: #ffd700;
+      font-size: 20px;
+      margin-top: 5px;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 22px;
+      }
+      .service p {
+        font-size: 16px;
+      }
+      .price {
+        font-size: 18px;
+      }
+      .container {
+        width: 95%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="backgroundMusic" loop autoplay>
+    <source src="https://files.catbox.moe/drmc7j.mp3" type="audio/mpeg">
+    Maaf, browser Anda tidak mendukung audio.
+  </audio>
+  <div class="container">
+    <h1>Dli & Dina</h1>
+    <div class="service">
+      <p>Dli maknya we injek</p>
+      <p class="price">Harga: 20k</p>
+    </div>
+    <div class="service">
+      <p>Dina spill...</p>
+      <p class="price">Harga: 30k</p>
+    </div>
+    <div class="footer">
+      <p>Hubungi @dliinotsepuh kalo tertarik 🤤</p>
+    </div>
+  </div>
+  <button class="audio-control" onclick="toggleAudio()">Pause Audio</button>
+
+  <script>
+    // Animasi ringan saat halaman dimuat
+    document.querySelectorAll('.service').forEach((el, index) => {
+      el.style.animation = `fadeIn 1s ease-in-out ${index * 0.3}s both`;
+    });
+
+    // Kontrol audio
+    const audio = document.getElementById('backgroundMusic');
+    audio.volume = 0.5; // Volume 50%
+    audio.play().catch(() => {
+      // Fallback jika autoplay diblokir
+      document.addEventListener('click', () => audio.play(), { once: true });
+    });
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        document.querySelector('.audio-control').textContent = 'Pause Audio';
+      } else {
+        audio.pause();
+        document.querySelector('.audio-control').textContent = 'Play Audio';
+      }
+    }
+  </script>
+</body>
+</html>
